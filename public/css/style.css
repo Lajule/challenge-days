@@ -31,6 +31,11 @@ form input[type="password"] {
   font-size: 2em;
 }
 
+.choice {
+  display: inline;
+  margin: 0 0.5em;
+}
+
 form label {
   font-size: 1.5em;
 }
