@@ -1,38 +1,38 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const express = require('express')
-const expressSession = require('express-session')
-const { json, urlencoded } = require('body-parser')
-const { Pool } = require('pg')
+const express = require('express');
+const expressSession = require('express-session');
+const { json, urlencoded } = require('body-parser');
+const { Pool } = require('pg');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
-})
+});
 
-const app = express()
-app.set('views', './views')
-app.set('view engine', 'pug')
+const app = express();
+app.set('views', './views');
+app.set('view engine', 'pug');
 
-app.use(express.static(__dirname + '/public'))
-app.use(urlencoded({ extended: false }))
-app.use(json())
+app.use(express.static(__dirname + '/public'));
+app.use(urlencoded({ extended: false }));
+app.use(json());
 app.use(expressSession({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true
-}))
+}));
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'index' })
-})
+  res.render('index', { title: 'index' });
+});
 
 app.post('/', (req, res) => {
   if (!req.body.account) {
     res.render('index', {
       title: 'index',
       error: 'Please entrer your client identifier'
-    })
+    });
   }
   else {
     const query =
@@ -46,24 +46,24 @@ app.post('/', (req, res) => {
           title: 'index',
           account: req.body.account,
           error: 'Unknown identifier'
-        })
+        });
       }
       else {
-        Object.assign(req.session, result.rows[0])
-        res.redirect('/code')
+        Object.assign(req.session, result.rows[0]);
+        res.redirect('/code');
       }
-    })
+    });
   }
-})
+});
 
 app.get('/code', (req, res) => {
   if (!req.session.name) {
-    res.redirect('/')
+    res.redirect('/');
   }
   else {
-    res.render('code', { title: 'Code', name: req.session.name })
+    res.render('code', { title: 'Code', name: req.session.name });
   }
-})
+});
 
 app.post('/code', (req, res) => {
   if (!req.session.name || !req.session.code__c) {
@@ -75,7 +75,7 @@ app.post('/code', (req, res) => {
         title: 'Code',
         name: req.session.name,
         error: 'Please entrer your code'
-      })
+      });
     }
     else {
       if (req.body.code != req.session.code__c) {
@@ -84,41 +84,41 @@ app.post('/code', (req, res) => {
           name: req.session.name,
           code: req.body.code,
           error: 'Wrong password'
-        })
+        });
       }
       else {
-        req.session.granted = true
-        res.redirect('/answer')
+        req.session.granted = true;
+        res.redirect('/answer');
       }
     }
   }
-})
+});
 
 app.get('/answer', (req, res) => {
   if (!req.session.name || !req.session.granted) {
-    res.redirect('/')
+    res.redirect('/');
   }
   else {
-    res.render('answer', { title: 'Answer', name: req.session.name })
+    res.render('answer', { title: 'Answer', name: req.session.name });
   }
-})
+});
 
 app.post('/answer', (req, res) => {
   if (!req.session.name || !req.session.granted || !req.session.sfid) {
-    res.redirect('/')
+    res.redirect('/');
   }
   else {
-    const accepted = req.body.answer == 'yes' ? 'TRUE' : 'FALSE'
+    const accepted = req.body.answer == 'yes' ? 'TRUE' : 'FALSE';
     const query =
       `UPDATE salesforce.challenge__c
       SET accepted__c = ${accepted}, visited__c = TRUE
-      WHERE account__c = $1`
+      WHERE account__c = $1`;
 
     pool.query(query, [req.session.sfid], (err, result) => {
-      res.render('finish', { title: 'Finish', name: req.session.name })
-    })
+      res.render('finish', { title: 'Finish', name: req.session.name });
+    });
   }
-})
+});
 
-const port = process.env.PORT
-app.listen(port, () => console.log(`Server listening on port ${port}`))
+const port = process.env.PORT;
+app.listen(port, () => console.log(`Server listening on port ${port}`));
