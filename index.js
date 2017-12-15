@@ -70,7 +70,7 @@ app.post('/code', (req, res) => {
     res.redirect('/');
   }
   else {
-    if (!req.body.password) {
+    if (!req.body.code) {
       res.render('code', {
         title: 'Code',
         name: req.session.name,
@@ -78,7 +78,7 @@ app.post('/code', (req, res) => {
       })
     }
     else {
-      if (req.body.password != req.session.code__c) {
+      if (req.body.code != req.session.code__c) {
         res.render('code', {
           title: 'Code',
           name: req.session.name,
