@@ -7,7 +7,7 @@ const { Pool } = require('pg');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  ssl: true,
 });
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(json());
 app.use(expressSession({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
 }));
 
 app.get('/', (req, res) => {
@@ -31,10 +31,9 @@ app.post('/', (req, res) => {
   if (!req.body.account) {
     res.render('index', {
       title: 'index',
-      error: 'Please entrer your client identifier'
+      error: 'Please entrer your client identifier',
     });
-  }
-  else {
+  } else {
     const query =
       `SELECT a.sfid, a.name, c.code__c, c.accepted__c, c.visited__c
       FROM salesforce.account a, salesforce.challenge__c c
@@ -45,10 +44,9 @@ app.post('/', (req, res) => {
         res.render('index', {
           title: 'index',
           account: req.body.account,
-          error: 'Unknown identifier'
+          error: 'Unknown identifier',
         });
-      }
-      else {
+      } else {
         Object.assign(req.session, result.rows[0]);
         res.redirect('/code');
       }
@@ -59,8 +57,7 @@ app.post('/', (req, res) => {
 app.get('/code', (req, res) => {
   if (!req.session.name) {
     res.redirect('/');
-  }
-  else {
+  } else {
     res.render('code', { title: 'Code', name: req.session.name });
   }
 });
@@ -68,25 +65,22 @@ app.get('/code', (req, res) => {
 app.post('/code', (req, res) => {
   if (!req.session.name || !req.session.code__c) {
     res.redirect('/');
-  }
-  else {
+  } else {
     if (!req.body.code) {
       res.render('code', {
         title: 'Code',
         name: req.session.name,
-        error: 'Please entrer your code'
+        error: 'Please entrer your code',
       });
-    }
-    else {
+    } else {
       if (req.body.code != req.session.code__c) {
         res.render('code', {
           title: 'Code',
           name: req.session.name,
           code: req.body.code,
-          error: 'Wrong password'
+          error: 'Wrong password',
         });
-      }
-      else {
+      } else {
         req.session.granted = true;
         res.redirect('/answer');
       }
@@ -97,8 +91,7 @@ app.post('/code', (req, res) => {
 app.get('/answer', (req, res) => {
   if (!req.session.name || !req.session.granted) {
     res.redirect('/');
-  }
-  else {
+  } else {
     res.render('answer', { title: 'Answer', name: req.session.name });
   }
 });
@@ -106,8 +99,7 @@ app.get('/answer', (req, res) => {
 app.post('/answer', (req, res) => {
   if (!req.session.name || !req.session.granted || !req.session.sfid) {
     res.redirect('/');
-  }
-  else {
+  } else {
     const accepted = req.body.answer == 'yes' ? 'TRUE' : 'FALSE';
     const query =
       `UPDATE salesforce.challenge__c
