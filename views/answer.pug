@@ -1,0 +1,12 @@
+extends _layout.pug
+
+block content
+  h1.name It's almost done,
+  form(action='/answer' method='POST')
+    h2 Do you accept to participate to the "Challenge Days" ?
+    input(type='radio' id='answer-yes' name='answer' value='yes' checked)
+    label(for='answer-yes') Yes
+    input(type='radio' id='answer-no' name='answer' value='no')
+    label(for='answer-no') No
+    p.error= error
+    button(type='submit') Submit

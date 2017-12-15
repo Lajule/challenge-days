@@ -1,0 +1,9 @@
+extends _layout.pug
+
+block content
+  h1 Welcome To Challenge Days !
+  form(action='/' method='POST')
+    h2 You must enter your client identifier to continue
+    input(type='text' name='account' value=account)
+    p.error= error
+    button(type='submit') Continue

@@ -1,0 +1,31 @@
+{
+  "name": "Challenge Days",
+  "description": "A typical Heroku Connect app",
+  "repository": "https://github.com/Lajule/challenge-days",
+  "logo": "http://challenge-days.herokuapp.com/images/challenge-days.png",
+  "keywords": [
+    "node",
+    "express",
+    "pug",
+    "pg"
+  ],
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "herokuconnect:demo"
+  ],
+  "env": {
+    "PORT": {
+      "description": "The web server listening port.",
+      "value": "8080"
+    },
+    "SECRET": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

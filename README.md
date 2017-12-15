@@ -1,0 +1,33 @@
+# challenge-days
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+A typical Heroku Connect app
+
+## Running locally
+
+To run the application locally, you have to create a `.env` file, use the following command to create the file:
+
+```sh
+cp .env.exemple .env
+```
+
+Then modify the values in the file to match your environment.
+
+Install project dependencies with:
+
+```sh
+npm install
+```
+
+To launch the application with `npm` as Heroku does, run:
+
+```sh
+npm start
+```
+
+You may also use `pm2` to watch changes to restart the application automatically:
+
+```sh
+./node_modules/.bin/pm2 start --name ChallengeDays --watch
+```

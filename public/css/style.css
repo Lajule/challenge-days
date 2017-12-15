@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Benguiat Bold";
+  src: url("../fonts/BenguiatBold.ttf");
+}
+
+html {
+  margin: 0;
+  background: url("../images/challenge-days.png") no-repeat center fixed;
+  background-size: cover;
+  padding: 0;
+  font-family: "Benguiat Bold", serif;
+}
+
+body {
+  margin-top: 65vh;
+  height: 100%;
+  text-align: center;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+  color: transparent;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2em;
+}
+
+form label {
+  font-size: 1.5em;
+}
+
+form button {
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background: none;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+  color: transparent;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.error {
+  text-shadow: 0 0 1px rgba(214, 20, 15, 1);
+  color: transparent;
+}
