@@ -36,7 +36,7 @@ app.post('/', (req, res) => {
   }
   else {
     const query =
-      `SELECT a.sfid, a.name, c.password__c, c.accepted__c, c.visited__c
+      `SELECT a.sfid, a.name, c.code__c, c.accepted__c, c.visited__c
       FROM salesforce.account a, salesforce.challenge__c c
       WHERE a.sfid = c.account__c AND  a.accountnumber = $1`;
 
@@ -56,33 +56,33 @@ app.post('/', (req, res) => {
   }
 })
 
-app.get('/password', (req, res) => {
+app.get('/code', (req, res) => {
   if (!req.session.name) {
     res.redirect('/')
   }
   else {
-    res.render('password', { title: 'Password', name: req.session.name })
+    res.render('code', { title: 'Code', name: req.session.name })
   }
 })
 
-app.post('/password', (req, res) => {
-  if (!req.session.name || !req.session.password__c) {
+app.post('/code', (req, res) => {
+  if (!req.session.name || !req.session.code__c) {
     res.redirect('/');
   }
   else {
     if (!req.body.password) {
-      res.render('password', {
-        title: 'Password',
+      res.render('code', {
+        title: 'Code',
         name: req.session.name,
-        error: 'Please entrer your password'
+        error: 'Please entrer your code'
       })
     }
     else {
-      if (req.body.password != req.session.password__c) {
-        res.render('password', {
-          title: 'Password',
+      if (req.body.password != req.session.code__c) {
+        res.render('code', {
+          title: 'Code',
           name: req.session.name,
-          password: req.body.password,
+          code: req.body.code,
           error: 'Wrong password'
         })
       }

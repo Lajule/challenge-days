@@ -1,0 +1,9 @@
+extends _layout.pug
+
+block content
+  h1.name Dear "#{name}",
+  form(action='/code' method='POST')
+    h2 enter the code you received by mail
+    input(type='text' name='code' value=code)
+    p.error= error
+    button(type='submit') Continue
