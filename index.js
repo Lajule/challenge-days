@@ -50,7 +50,7 @@ app.post('/', (req, res) => {
       }
       else {
         Object.assign(req.session, result.rows[0])
-        res.redirect('/password')
+        res.redirect('/code')
       }
     })
   }
