@@ -26,7 +26,7 @@ To launch the application with `npm` as Heroku does, run:
 npm start
 ```
 
-You may also use `pm2` to watch changes to restart the application automatically:
+You may also use `pm2` to watch changes in order to restart the application automatically:
 
 ```sh
 ./node_modules/.bin/pm2 start --name ChallengeDays --watch
