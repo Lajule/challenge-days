@@ -1,9 +1,9 @@
 extends _layout.pug
 
 block content
-  h1.name It's almost done,
-  form(action='/answer' method='POST')
-    h2 Do you accept to participate to the "Challenge Days" ?
+  form(action='/challenge' method='POST')
+    h1= name
+    h2 Do you accept to participate to this challenge ?
     .answer
       input(type='radio' id='answer-yes' name='answer' value='yes' checked)
       label(for='answer-yes') Yes

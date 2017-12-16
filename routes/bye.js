@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  if (!req.session.name || !req.session.granted) {
+  if (!req.session.sfid || !req.session.name) {
     res.redirect('/');
   } else {
-    res.render('finish', { title: 'Finish', name: req.session.name });
+    res.render('bye', { title: 'Bye', name: req.session.name });
   }
 });
 

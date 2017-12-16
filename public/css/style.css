@@ -19,8 +19,7 @@ body {
   color: transparent;
 }
 
-form input[type="text"],
-form input[type="password"] {
+form input[type="text"] {
   outline: none;
   border-top: none;
   border-right: none;

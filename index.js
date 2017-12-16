@@ -25,9 +25,8 @@ app.use(expressSession({
 }));
 
 app.use('/', require('./routes/index'));
-app.use('/code', require('./routes/code'));
-app.use('/answer', require('./routes/answer'));
-app.use('/finish', require('./routes/finish'));
+app.use('/challenge', require('./routes/challenge'));
+app.use('/bye', require('./routes/bye'));
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server listening on port ${port}`));
