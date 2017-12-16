@@ -4,10 +4,10 @@ block content
   h1.name It's almost done,
   form(action='/answer' method='POST')
     h2 Do you accept to participate to the "Challenge Days" ?
-    .choice
+    .answer
       input(type='radio' id='answer-yes' name='answer' value='yes' checked)
       label(for='answer-yes') Yes
-    .choice
+    .answer
       input(type='radio' id='answer-no' name='answer' value='no')
       label(for='answer-no') No
     p.error= error
