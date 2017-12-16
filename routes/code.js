@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
           title: 'Code',
           name: req.session.name,
           code: req.body.code,
-          error: 'Wrong password',
+          error: 'Wrong code',
         });
       } else {
         req.session.granted = true;
