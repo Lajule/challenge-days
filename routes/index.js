@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'index' });
+  res.render('index', { title: 'Index' });
 });
 
 router.post('/', (req, res) => {
