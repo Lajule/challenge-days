@@ -29,5 +29,5 @@ npm start
 You may also use `pm2` to watch changes in order to restart the application automatically:
 
 ```sh
-./node_modules/.bin/pm2 start --name ChallengeDays --watch
+./node_modules/.bin/pm2 start index.js --name ChallengeDays --watch
 ```
