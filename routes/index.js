@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   if (!req.body.account || !req.body.code) {
     res.render('index', {
-      title: 'index',
+      title: 'Index',
       account: req.body.account,
       code: req.body.code,
       error: 'Please entrer required informations',
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
     pool.query(query, [req.body.account, req.body.code], (err, result) => {
       if (!result.rowCount) {
         res.render('index', {
-          title: 'index',
+          title: 'Index',
           account: req.body.account,
           code: req.body.code,
           error: 'Wrong client identifier or activation code',
