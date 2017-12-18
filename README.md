@@ -6,7 +6,7 @@ A typical Heroku Connect app
 
 ## Running locally
 
-To run the application locally, you have to create a `.env` file, use the following command to create the file:
+To run the application locally, you have to create a `.env` file using the following command:
 
 ```sh
 cp .env.exemple .env
