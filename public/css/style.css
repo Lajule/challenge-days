@@ -30,11 +30,6 @@ form input[type="text"] {
   font-size: 2em;
 }
 
-.answer {
-  display: inline;
-  margin: 0 0.5em;
-}
-
 form label {
   font-size: 1.5em;
 }
