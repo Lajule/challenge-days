@@ -2,7 +2,11 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-A typical Heroku Connect app
+A typical Heroku Connect app built around [Express][1]. Note that other libraries are also used:
+
+* [pug][2] as view engine
+* [node-postgres][3] as PostgreSQL client
+* [winston][4] as logger
 
 ## Running locally
 
@@ -31,3 +35,8 @@ You may also use `pm2` to watch changes in order to restart the application auto
 ```sh
 ./node_modules/.bin/pm2 start index.js --name ChallengeDays --watch
 ```
+
+[1]: https://expressjs.com/ "Express"
+[2]: https://pugjs.org/ "Pug"
+[3]: https://node-postgres.com/ "node-postgres"
+[4]: https://github.com/winstonjs/winston "winston"

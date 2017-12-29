@@ -7,20 +7,24 @@
     "node",
     "express",
     "pug",
-    "pg"
+    "node-postgres"
   ],
   "addons": [
     "heroku-postgresql:hobby-dev",
     "herokuconnect:demo"
   ],
   "env": {
-    "PORT": {
-      "description": "The web server listening port.",
-      "value": "8080"
+    "LEVEL": {
+      "description": "The logger severity level.",
+      "value": "info"
     },
     "SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
+    },
+    "PORT": {
+      "description": "The web server listening port.",
+      "value": "8080"
     }
   },
   "buildpacks": [

@@ -4,12 +4,19 @@ const express = require('express');
 const expressSession = require('express-session');
 const { json, urlencoded } = require('body-parser');
 const { Pool } = require('pg');
+const winston = require('winston');
 
 const app = express();
 
 app.locals.pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
+});
+
+app.locals.logger = new winston.Logger({
+  transports: [
+    new winston.transports.Console({ level: process.env.LEVEL })
+  ]
 });
 
 app.set('views', './views');
@@ -29,4 +36,5 @@ app.use('/challenge', require('./routes/challenge'));
 app.use('/bye', require('./routes/bye'));
 
 const port = process.env.PORT;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+const logger = app.locals.logger;
+app.listen(port, () => logger.info(`Server listening on port ${port}`));
