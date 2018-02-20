@@ -4,7 +4,7 @@ const express = require('express');
 const expressSession = require('express-session');
 const { json, urlencoded } = require('body-parser');
 const { Pool } = require('pg');
-const winston = require('winston');
+const { Logger, transports: { Console } } = require('winston');
 
 const app = express();
 
@@ -13,9 +13,9 @@ app.locals.pool = new Pool({
   ssl: true,
 });
 
-app.locals.logger = new winston.Logger({
+app.locals.logger = new Logger({
   transports: [
-    new winston.transports.Console({ level: process.env.LEVEL })
+    new Console({ level: process.env.LEVEL })
   ]
 });
 
