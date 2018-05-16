@@ -1,10 +1,10 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   if (!req.session.sfid || !req.session.name) {
-    res.redirect('/');
+    res.redirect("/");
   } else {
-    res.render('bye', { title: 'Bye', name: req.session.name });
+    res.render("bye", { title: "Bye", name: req.session.name });
   }
 });
 
